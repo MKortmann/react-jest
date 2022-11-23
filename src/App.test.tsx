@@ -31,13 +31,44 @@
 // 	})
 // })
 
-import * as React from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import { NameForm } from './NameForm'
+// FORM NAME FORM
 
-describe('NameForm', () => {
-	it('will display an error if the name is not provided.', () => {
-		const component = render(<NameForm />)
+// import * as React from 'react'
+// import { render, fireEvent } from '@testing-library/react'
+// import { NameForm } from './NameForm'
+
+// describe('NameForm', () => {
+// 	it('will display an error if the name is not provided.', () => {
+// 		const component = render(<NameForm />)
+
+// 		const submitButton = component.getByTestId('submit-button')
+// 		fireEvent.click(submitButton)
+// 		expect(component.getByTestId('error-header')).toBeInTheDocument()
+// 		expect(component.queryByTestId('success-header')).not.toBeInTheDocument()
+// 	})
+
+// 	it('will display a success message if the name is provided.', () => {
+// 		const component = render(<NameForm />)
+
+// 		const input = component.getByTestId('name-input')
+// 		fireEvent.change(input, { target: { value: 'Mike' } })
+// 		const submitButton = component.getByTestId('submit-button')
+// 		fireEvent.click(submitButton)
+// 		expect(component.getByTestId('success-header')).toBeInTheDocument()
+// 		expect(component.queryByTestId('error-header')).not.toBeInTheDocument()
+// 	})
+// })
+import { render, fireEvent } from '@testing-library/react'
+import { ContactUsForm } from './ContactUsForm'
+
+describe('ContactUsForm', () => {
+	it('will display an error if all fields expect the email are submitted', () => {
+		const component = render(<ContactUsForm />)
+
+		const select = component.getByTestId('department-select')
+		fireEvent.change(select, { target: { value: 'sales' } })
+		const textArea = component.getByTestId('question-textarea')
+		fireEvent.change(textArea, { target: { value: 'any value here' } })
 
 		const submitButton = component.getByTestId('submit-button')
 		fireEvent.click(submitButton)
@@ -45,14 +76,46 @@ describe('NameForm', () => {
 		expect(component.queryByTestId('success-header')).not.toBeInTheDocument()
 	})
 
-	it('will display a success message if the name is provided.', () => {
-		const component = render(<NameForm />)
+	it('will display an error if all fields expect the department are submitted', () => {
+		const component = render(<ContactUsForm />)
 
-		const input = component.getByTestId('name-input')
-		fireEvent.change(input, { target: { value: 'Mike' } })
+		const email = component.getByTestId('email-input')
+		fireEvent.change(email, { target: { value: 'any value' } })
+		const select = component.getByTestId('department-select')
+		fireEvent.change(select, { target: { value: 'sales' } })
+
+		const submitButton = component.getByTestId('submit-button')
+		fireEvent.click(submitButton)
+		expect(component.getByTestId('error-header')).toBeInTheDocument()
+		expect(component.queryByTestId('success-header')).not.toBeInTheDocument()
+	})
+
+	it('will display an error if all fields expect the question are submitted', () => {
+		const component = render(<ContactUsForm />)
+
+		const email = component.getByTestId('email-input')
+		fireEvent.change(email, { target: { value: 'any value' } })
+		const textArea = component.getByTestId('question-textarea')
+		fireEvent.change(textArea, { target: { value: 'any value here' } })
+
+		const submitButton = component.getByTestId('submit-button')
+		fireEvent.click(submitButton)
+		expect(component.getByTestId('error-header')).toBeInTheDocument()
+		expect(component.queryByTestId('success-header')).not.toBeInTheDocument()
+	})
+	it('will display sucess all fields are submitted', () => {
+		const component = render(<ContactUsForm />)
+
+		const select = component.getByTestId('department-select')
+		fireEvent.change(select, { target: { value: 'sales' } })
+		const email = component.getByTestId('email-input')
+		fireEvent.change(email, { target: { value: 'any value' } })
+		const textArea = component.getByTestId('question-textarea')
+		fireEvent.change(textArea, { target: { value: 'any value here' } })
+
 		const submitButton = component.getByTestId('submit-button')
 		fireEvent.click(submitButton)
 		expect(component.getByTestId('success-header')).toBeInTheDocument()
-		expect(component.queryByTestId('error-header')).not.toBeInTheDocument()
+		expect(component.queryByTestId('error-heacer')).not.toBeInTheDocument()
 	})
 })

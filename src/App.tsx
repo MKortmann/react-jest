@@ -1,7 +1,8 @@
 import React from 'react'
 import logo from './logo.svg'
 import './App.css'
-import { NameForm } from './NameForm'
+// import { NameForm } from './NameForm'
+import { ContactUsForm } from './ContactUsForm'
 
 function App() {
 	return (
@@ -17,8 +18,10 @@ function App() {
 				<br />
 				<input type='submit' value='Submit' />
 			</form> */}
-			<h1>Form to test</h1>
-			<NameForm></NameForm>
+			{/* <h1>Form to test</h1>
+			<NameForm></NameForm> */}
+			<h1>Contact Us Form</h1>
+			<ContactUsForm></ContactUsForm>
 		</div>
 	)
 }
